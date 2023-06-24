@@ -4,6 +4,9 @@ const cors = require("cors");
 const userRouter = require("./routes/user.route");
 const { connection } = require("./configs/db");
 require("dotenv").config();
+const app = express();
+app.use(express.json());
+app.use(cors());
 
  const openai = new OpenAIApi(
   new Configuration({
@@ -11,11 +14,8 @@ require("dotenv").config();
   })
 );
 
-const app = express();
 
-app.use(cors());
 
-app.use(express.json());
 
 app.use("/user", userRouter)
 
